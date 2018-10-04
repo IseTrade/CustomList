@@ -8,9 +8,10 @@ namespace ConsoleApp1
 {
     public class CustomList<T>
     {
-        string value;
-        T[] items = new T[2];
-        int count;
+        private int capacity = 4;
+        private int count = 0;
+        //T value;
+        T[] items = new T[capacity];
 
         // Define the indexer to allow client code to use [] notation.
         public T this[int i]
@@ -18,14 +19,28 @@ namespace ConsoleApp1
             get { return items[i]; }
             set { items[i] = value; }
         }
+
+
+        private int Count
+        {
+            get { return count; }
+        }
+        //Define method to add to end of array and/or to increase array size, if needed.
         public void Add(T value)
         {
+            if (count > capacity)
+            {
+                T[] temp = new T[capacity * 2];
 
-            //items[1] = 
-            items[0] = value;
-            //for (int i = 0; )
-
-            //this.items[1] = value;
+                for (int i = 0; i < count; i++)
+                {
+                    temp[i] = items[i];
+                }
+                items = temp;
+                count++;
+                //items[0] = value;
+            }
         }
     }
 }
+
