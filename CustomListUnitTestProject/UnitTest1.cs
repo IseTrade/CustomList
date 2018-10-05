@@ -7,7 +7,7 @@ namespace CustomListUnitTestProject
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()   //Testing to see if value passed to customList.Add is the same as value 
+        public void TestMethod01()   //Testing to see if value passed to customList.Add is the same as value 
                                     //stored at index 0 of customList.
         {
             //Arrange
@@ -23,7 +23,7 @@ namespace CustomListUnitTestProject
         }
 
         [TestMethod]
-        public void TestMethod2()  //Testing to see if an actual integer is passed and stored correctly. 
+        public void TestMethod02()  //Testing to see if an actual integer is passed and stored correctly. 
         {
             //Arrange
             CustomList<int> customList = new CustomList<int>();
@@ -38,7 +38,7 @@ namespace CustomListUnitTestProject
         }
 
         [TestMethod]
-        public void TestMethod3()  //Test passing a negative int.
+        public void TestMethod03()  //Test passing a negative int.
         {
             //Arrange
             CustomList<int> customList = new CustomList<int>();
@@ -52,7 +52,7 @@ namespace CustomListUnitTestProject
         }
 
         [TestMethod]
-        public void TestMethod4()  //Test passing a string
+        public void TestMethod04()  //Test passing a string
         {
             //Arrange
             CustomList<string> customList = new CustomList<string>();
@@ -67,7 +67,7 @@ namespace CustomListUnitTestProject
         }
 
         [TestMethod]
-        public void TestMethod5()  //Test passing null
+        public void TestMethod05()  //Test passing null
         {
             //Arrange
             CustomList<string> customList = new CustomList<string>();
@@ -82,22 +82,8 @@ namespace CustomListUnitTestProject
         }
 
 
-        //[TestMethod]
-        //public void TestMethod2()
-        //{
-        //    //Arrange
-        //    CustomList<int> customList = new CustomList<int>();
-        //    int value = 16;
-        //    int countValue = 1;
-
-        //    //Act
-        //    customList.Add(value);
-
-        //    //Assert
-        //    Assert.AreEqual(customList.Count, countValue);
-        //}
         [TestMethod]
-        public void TestMethod6()    //Testing to see if index works on [1]
+        public void TestMethod06()    //Testing to see if index works on [1]
         {
             //Arrange
             CustomList<int> customList = new CustomList<int>();
@@ -106,35 +92,77 @@ namespace CustomListUnitTestProject
 
             //Act
             customList.Add(value);
-            //customList.Add(value1);
+            customList.Add(value1);
 
             //Assert
-            Assert.AreEqual(value, customList[1]);
+            Assert.AreEqual(value1, customList[1]);
         }
 
+
         [TestMethod]
-        public void TestMethod7()    //Testing to see if index works on [1]
+        public void TestMethod07()    //Count test before doubling Array [4]
         {
             //Arrange
-            CustomList<int> customList = new CustomList<int>();
-            int value = 16;
-            int value1 = 20;
+            CustomList<int> customList = new CustomList<int>(); 
 
             //Act
-            customList.Add(value);
-            //customList.Add(value1);
+            customList.Add(0);
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
 
             //Assert
-            Assert.AreEqual(value, customList[1]);
+            Assert.AreEqual(4, customList.Count);
         }
 
         [TestMethod]
-        public void TestMethod8()    //Testing to see if index works on [1]
+        public void TestMethod08()    //Testing to see if index works on [1]
+        {
+            //Arrange
+            CustomList<int> customList = new CustomList<int>(); //Count test at 1st doubling Array[8]
+
+            //Act
+            customList.Add(0);
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            customList.Add(4);
+            customList.Add(5);
+            customList.Add(6);
+
+            //Assert
+            Assert.AreEqual(7, customList.Count);
+        }
+
+        [TestMethod]
+        public void TestMethod09()    //Testing to see if index works on [1]
+        {
+            //Arrange
+            CustomList<int> customList = new CustomList<int>();   //Count test at 2nd doubling Array[16]
+
+            //Act
+            customList.Add(0);
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            customList.Add(4);
+            customList.Add(5);
+            customList.Add(6);
+            customList.Add(7);
+            customList.Add(8);
+            customList.Add(9);
+            customList.Add(10);
+            customList.Add(11);
+
+            //Assert
+            Assert.AreEqual(12, customList.Count);
+        }
+
+        [TestMethod]
+        public void TestMethod10()    // Count test at 3rd doubling or array[32]
         {
             //Arrange
             CustomList<int> customList = new CustomList<int>();
-            int value = 16;
-            int value1 = 20;
 
             //Act
             customList.Add(0);
@@ -158,7 +186,8 @@ namespace CustomListUnitTestProject
             customList.Add(18);
 
             //Assert
-            Assert.AreEqual(4, customList[4]);
+            Assert.AreEqual(19, customList.Count);
         }
+
     }
 }
