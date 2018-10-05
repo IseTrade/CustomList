@@ -185,9 +185,26 @@ namespace CustomListUnitTestProject
             customList.Add(17);
             customList.Add(18);
 
+            int count = customList.Count;
+            //Assert
+            Assert.AreEqual(19, count);
+        }
+
+        [TestMethod]
+        public void TestMethod11()    // Count test at 3rd doubling or array[32]
+        {
+            //Arrange
+            //CustomList<int> customList = new CustomList<int>();
+
+            CustomList<int> customList = new CustomList<int>();
+            //customList(int) = { 1, 2, 3, 4, 5};
+
+            //Act
+
+
+
             //Assert
             Assert.AreEqual(19, customList.Count);
         }
-
     }
 }

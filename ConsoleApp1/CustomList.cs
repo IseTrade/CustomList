@@ -11,6 +11,7 @@ namespace ConsoleApp1
         private T[] items;
         private int count;
         private int capacity;
+        //CustomList<T> customlist;
 
         public int Count
         {
@@ -23,7 +24,7 @@ namespace ConsoleApp1
             set { capacity = value; }
         }
 
-        public CustomList()
+        public CustomList()  //Constructor for CustomList
         {
             count = 0;
             capacity = 0;
@@ -67,5 +68,25 @@ namespace ConsoleApp1
             items[count] = itemToAdd;
             count += 1;
         }
+
+        
+        public void Remove(T itemToRemove)
+        {
+            T[] itemsAdded = new T[count + 1];
+            for (int i = 0; i < count; i++)
+            {
+                itemsAdded[i] = items[i];
+            }
+
+            if (capacity < count * 2)
+            {
+                capacity = capacity * 2;
+            }
+            items = itemsAdded;
+            items[count] = itemToRemove;
+            count += 1;
+            
+        }
+        
     }
 }
