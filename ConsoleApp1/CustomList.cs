@@ -11,7 +11,7 @@ namespace ConsoleApp1
         private T[] items;
         private int count;
         private int capacity;
-        //CustomList<T> customlist;
+       // CustomList<T> customList;
 
         public int Count
         {
@@ -27,8 +27,9 @@ namespace ConsoleApp1
         public CustomList()  //Constructor for CustomList
         {
             count = 0;
-            capacity = 0;
+            capacity = 4;
             items = new T[capacity];
+            
         }
 
         public T this[int index]
@@ -70,37 +71,43 @@ namespace ConsoleApp1
         }
 
         // Working on Remove method, would like to use Add method created above, not sure how to do that.
-        public void Remove(T itemToRemove)
+        public void RemoveAll(T itemToRemove)
         {
-            CustomList<T> tempList = new CustomList<T>();
-            CustomList<T> customList;
-
-            for (int i = 0; i < count; i++)
+            T[] tempList = new T[100];
+            for (int i = 0, j = 0; i < this.count; i++, j++)
             {
-               // if (items[i] != itemToRemove)
+                if (!items[i].Equals(itemToRemove))
                 {
-               //     tempList.Add(customList[i]);
+                    tempList[j]=items[i];
+                    
+                }
+                else
+                {
+                    j--;
+                    count--;
                 }
             }
+            items = tempList;
+        }
 
-
-
-
-            T[] itemsAdded = new T[count + 1];
-            for (int i = 0; i < count; i++)
+        public void Remove(T itemToRemove)
+        {
+            T[] tempList = new T[100];
+            for (int i = 0, j = 0; i < this.count; i++, j++)
             {
-                itemsAdded[i] = items[i];
-            }
+                if (!items[i].Equals(itemToRemove))
+                {
+                    tempList[j] = items[i];
 
-            if (capacity < count * 2)
-            {
-                capacity = capacity * 2;
+                }
+                else
+                {
+                    j--;
+                    count--;
+                }
             }
-            items = itemsAdded;
-            items[count] = itemToRemove;
-            count += 1;
-            
-        } 
-        
+            items = tempList;
+        }
+
     }
 }

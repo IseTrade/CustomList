@@ -179,7 +179,7 @@ namespace CustomListUnitTestProject
             customList.Add(11);
             customList.Add(12);
             customList.Add(13);
-            customList.Add(1);
+            customList.Add(10);
             customList.Add(15);
             customList.Add(16);
             customList.Add(17);
@@ -191,20 +191,25 @@ namespace CustomListUnitTestProject
         }
 
         [TestMethod]
-        public void TestMethod11()    // Count test at 3rd doubling or array[32]
+        public void TestMethod11()    
         {
             //Arrange
-            //CustomList<int> customList = new CustomList<int>();
-
-            CustomList<int> customList = new CustomList<int>();
-            //customList(int) = { 1, 2, 3, 4, 5};
+            CustomList<int> customList = new CustomList<int>(); 
 
             //Act
-
-
-
+            customList.Add(0);
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            customList.Add(4);
+            customList.Add(4);
+            customList.Add(5);
+            customList.Add(6);
+            customList.Remove(4);
             //Assert
-            Assert.AreEqual(19, customList.Count);
+            Assert.AreEqual(5, customList[4]);
         }
+
+
     }
 }

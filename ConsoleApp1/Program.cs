@@ -27,8 +27,8 @@ namespace ConsoleApp1
             customList.Add(10);
             customList.Add(11);
             customList.Add(12);
-            customList.Add(13);
-            customList.Add(1);
+            customList.Add(10);
+            customList.Add(14);
             customList.Add(15);
             customList.Add(16);
             customList.Add(17);
@@ -47,10 +47,11 @@ namespace ConsoleApp1
             // This is the "REMOVE" procedure I would like to implement in CustomList.cs as a method. 
             for (int i = 0; i < customList.Count; i++)
             {
-                if (customList[i] != 10)
+                if ((customList[i] != 10))
                 {
                     tempList.Add(customList[i]);
-                }               
+                }
+                
             }
 
             for (int i = 0; i < tempList.Count; i++)
@@ -58,7 +59,7 @@ namespace ConsoleApp1
                 Console.WriteLine(tempList[i]);               
             }
             Console.WriteLine($"Count is now {tempList.Count} \n");
-            Console.ReadKey();  //Notice that 10 is missing from the new list and the count is now 1 less.
+            Console.ReadKey();  //Notice that 10 is missing from the new list and the count is now 2 less.
 
 
             
