@@ -92,7 +92,7 @@ namespace ConsoleApp1
 
         public void Remove(T itemToRemove)
         {
-            T[] tempList = new T[100];
+            T[] tempList = new T[capacity];
             for (int i = 0, j = 0; i < this.count; i++, j++)
             {
                 if (!items[i].Equals(itemToRemove))
