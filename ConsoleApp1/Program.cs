@@ -11,6 +11,7 @@ namespace ConsoleApp1
         
         static void Main(string[] args)
         {
+            // Generating a big list for customList for testing purposes.
             CustomList<int> customList = new CustomList<int>();
             CustomList<int> tempList = new CustomList<int>();
             customList.Add(0);
@@ -36,13 +37,17 @@ namespace ConsoleApp1
             {
                 Console.WriteLine(customList[i]);
             }
+            Console.WriteLine($"Count is {customList.Count} \n");
             Console.ReadKey();
 
 
-
+            // Removing item with value 10 from the list generated above then print new list to screen.
+            // Might need to make sure it doesn't remove all values of 10, so maybe need another counter like
+            // j++, and tell the loop to stop searching if j == 1
+            // This is the "REMOVE" procedure I would like to implement in CustomList.cs as a method. 
             for (int i = 0; i < customList.Count; i++)
             {
-                if (customList[i] != (10))
+                if (customList[i] != 10)
                 {
                     tempList.Add(customList[i]);
                 }               
@@ -50,9 +55,13 @@ namespace ConsoleApp1
 
             for (int i = 0; i < tempList.Count; i++)
             {
-                Console.WriteLine(tempList[i]);
+                Console.WriteLine(tempList[i]);               
             }
-            Console.ReadKey();
+            Console.WriteLine($"Count is now {tempList.Count} \n");
+            Console.ReadKey();  //Notice that 10 is missing from the new list and the count is now 1 less.
+
+
+            
         }
        
     }

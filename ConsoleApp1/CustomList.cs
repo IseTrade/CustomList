@@ -69,9 +69,23 @@ namespace ConsoleApp1
             count += 1;
         }
 
-        
+        // Working on Remove method, would like to use Add method created above, not sure how to do that.
         public void Remove(T itemToRemove)
         {
+            CustomList<T> tempList = new CustomList<T>();
+            CustomList<T> customList;
+
+            for (int i = 0; i < count; i++)
+            {
+               // if (items[i] != itemToRemove)
+                {
+               //     tempList.Add(customList[i]);
+                }
+            }
+
+
+
+
             T[] itemsAdded = new T[count + 1];
             for (int i = 0; i < count; i++)
             {
@@ -86,7 +100,7 @@ namespace ConsoleApp1
             items[count] = itemToRemove;
             count += 1;
             
-        }
+        } 
         
     }
 }
