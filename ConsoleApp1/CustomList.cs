@@ -8,39 +8,64 @@ namespace ConsoleApp1
 {
     public class CustomList<T>
     {
-        private int capacity = 4;
-        private int count = 0;
-        //T value;
-        T[] items = new T[capacity];
+        private T[] items;
+        private int count;
+        private int capacity;
 
-        // Define the indexer to allow client code to use [] notation.
-        public T this[int i]
-        {
-            get { return items[i]; }
-            set { items[i] = value; }
-        }
-
-
-        private int Count
+        public int Count
         {
             get { return count; }
+            set { count = value; }
         }
-        //Define method to add to end of array and/or to increase array size, if needed.
-        public void Add(T value)
+        public int Capacity
         {
-            if (count > capacity)
-            {
-                T[] temp = new T[capacity * 2];
+            get { return capacity; }
+            set { capacity = value; }
+        }
 
-                for (int i = 0; i < count; i++)
+        public CustomList()
+        {
+            count = 0;
+            capacity = 0;
+            items = new T[capacity];
+        }
+
+        public T this[int index]
+        {
+            get
+            {
+                if (index >= 0 && index <= Count)
                 {
-                    temp[i] = items[i];
+                    return items[index];
                 }
-                items = temp;
-                count++;
-                //items[0] = value;
+                return items[index];
             }
+            set
+            {
+                if (index >= 0 && index <= Count)
+                {
+                    items[index] = value;
+                }
+            }
+        }
+
+
+
+        public void Add(T itemToAdd)
+        {
+            T[] itemsAdded = new T[count + 1];
+            for (int i = 0; i < count; i++)
+            {
+                itemsAdded[i] = items[i];
+            }
+
+            if (capacity < count * 2)
+            {
+                capacity = capacity * 2;
+            }
+            items = itemsAdded;
+            items[count] = itemToAdd;
+            count += 1;
         }
     }
 }
-

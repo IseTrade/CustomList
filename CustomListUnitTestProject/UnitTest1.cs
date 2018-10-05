@@ -137,12 +137,28 @@ namespace CustomListUnitTestProject
             int value1 = 20;
 
             //Act
+            customList.Add(0);
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            customList.Add(4);
+            customList.Add(5);
+            customList.Add(6);
+            customList.Add(7);
+            customList.Add(8);
+            customList.Add(9);
+            customList.Add(10);
+            customList.Add(11);
+            customList.Add(12);
+            customList.Add(13);
+            customList.Add(1);
+            customList.Add(15);
             customList.Add(16);
             customList.Add(17);
             customList.Add(18);
 
             //Assert
-            Assert.AreEqual(18, customList[2]);
+            Assert.AreEqual(4, customList[4]);
         }
     }
 }
