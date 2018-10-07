@@ -8,7 +8,7 @@ namespace CustomListUnitTestProject
     {
         [TestMethod]
         public void TestMethod01()   //Testing to see if value passed to customList.Add is the same as value 
-                                    //stored at index 0 of customList.
+                                     //stored at index 0 of customList.
         {
             //Arrange
             CustomList<int> customList = new CustomList<int>();
@@ -103,7 +103,7 @@ namespace CustomListUnitTestProject
         public void TestMethod07()    //Count test before doubling Array [4]
         {
             //Arrange
-            CustomList<int> customList = new CustomList<int>(); 
+            CustomList<int> customList = new CustomList<int>();
 
             //Act
             customList.Add(0);
@@ -191,10 +191,10 @@ namespace CustomListUnitTestProject
         }
 
         [TestMethod]
-        public void TestMethod11()    
+        public void TestMethod11()
         {
             //Arrange
-            CustomList<int> customList = new CustomList<int>(); 
+            CustomList<int> customList = new CustomList<int>();
 
             //Act
             customList.Add(0);
@@ -221,11 +221,152 @@ namespace CustomListUnitTestProject
             customList.Add(2);
             customList.Add(3);
             customList.Add(4);
-            customList.Add(5);
+            customList.Add(4);
             customList.Add(6);
             customList.Remove(4);
             //Assert
-            Assert.AreEqual(5, customList[4]);
+            Assert.AreEqual(6, customList[5]);
         }
+
+        [TestMethod]
+        public void TestMethod13()
+        {
+            //Arrange
+            CustomList<int> customList = new CustomList<int>();
+            CustomList<int> customList2 = new CustomList<int>();
+
+            //Act
+            customList.Add(0);
+            customList.Add(2);
+            customList.Add(4);
+            customList.Add(6);
+            customList2.Add(1);
+            customList2.Add(3);
+            customList2.Add(5);
+            customList2.Add(7);
+            CustomList<int> zippedList = customList.Zip(customList2);
+
+            //Assert
+            Assert.AreEqual(7, zippedList[7]);
+        }
+
+        [TestMethod]
+        public void TestMethod14()
+        {
+            //Arrange
+            //CustomList<int> customList = new CustomList<int>();
+            CustomList<int> customList1 = new CustomList<int>();
+            CustomList<int> customList2 = new CustomList<int>();
+            //Act
+            customList1.Add(1);
+            customList1.Add(2);
+            customList1.Add(3);
+            customList1.Add(4);
+            customList2.Add(5);
+            customList2.Add(6);
+            customList2.Add(7);
+            customList2.Add(8);
+            CustomList<int> overLoadPlus = customList1 + customList2;
+
+            //Assert
+            Assert.AreEqual(6, overLoadPlus[5]);
+        }
+
+        [TestMethod]
+        public void TestMethod15()
+        {
+            //Arrange
+            //CustomList<int> customList = new CustomList<int>();
+            CustomList<int> customList1 = new CustomList<int>();
+            CustomList<int> customList2 = new CustomList<int>();
+            //Act
+            customList1.Add(1);
+            customList1.Add(2);
+            customList1.Add(3);
+            customList2.Add(4);
+            customList2.Add(1);
+            customList2.Add(6);
+
+            CustomList<int> overLoadMinus = customList1 - customList2;
+
+            //Assert
+            Assert.AreEqual(3, overLoadMinus[1]);
+        }
+
+        [TestMethod]
+        public void TestMethod16()
+        {
+            //Arrange
+            //CustomList<int> customList = new CustomList<int>();
+            CustomList<int> customList1 = new CustomList<int>();
+            CustomList<int> customList2 = new CustomList<int>();
+            //Act
+            customList1.Add(1);
+            customList1.Add(2);
+            customList1.Add(3);
+            customList2.Add(4);
+            customList2.Add(1);
+            customList2.Add(6);
+
+            CustomList<int> overLoadMinus = customList1 - customList2;
+
+            //Assert
+            Assert.AreEqual(2, overLoadMinus[0]);
+        }
+
+        [TestMethod]
+        public void TestMethod17()  //Sorting integers.
+        {
+            //Arrange
+            CustomList<int> customList = new CustomList<int>();
+            //Act
+            customList.Add(8);
+            customList.Add(4);
+            customList.Add(1);
+            customList.Add(5);
+            customList.Add(3);
+            customList.Add(7);
+            customList.SortAscending();
+
+            //Assert
+            Assert.AreEqual(8, customList[5]);
+        }
+
+        [TestMethod]
+        public void TestMethod18() //Sorting character.
+        {
+            //Arrange
+            CustomList<string> customList = new CustomList<string>();
+            //Act
+            customList.Add("c");
+            customList.Add("h");
+            customList.Add("d");
+            customList.Add("m");
+            customList.Add("b");
+            customList.Add("f");
+            customList.SortAscending();
+
+            //Assert
+            Assert.AreEqual("c", customList[1]);
+        }
+
+        [TestMethod]    //sorting 'full' string.
+        public void TestMethod19()
+        {
+            //Arrange
+            CustomList<string> customList = new CustomList<string>();
+            //Act
+            customList.Add("five");
+            customList.Add("nine");
+            customList.Add("one");
+            customList.Add("eight");
+            customList.Add("zero");
+            customList.Add("two");
+            customList.SortAscending();
+
+            //Assert
+            Assert.AreEqual("five", customList[1]);
+        }
+
     }
 }
