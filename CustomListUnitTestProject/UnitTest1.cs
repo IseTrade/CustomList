@@ -365,7 +365,43 @@ namespace CustomListUnitTestProject
             customList.SortAscending();
 
             //Assert
-            Assert.AreEqual("five", customList[1]);
+            Assert.AreEqual("five", customList[1]);           
+        }
+
+        [TestMethod]
+        public void TestMethod20()  //ToString Override, string output expected for int list.
+        {
+            //Arrange
+            CustomList<int> customList = new CustomList<int>();
+            //Act
+            customList.Add(8);
+            customList.Add(4);
+            customList.Add(1);
+            customList.Add(5);
+            customList.Add(3);
+            customList.Add(7);
+            string customString = customList.ToString();
+
+            //Assert
+            Assert.AreEqual("8.4.1.5.3.7", customString);
+        }
+
+        [TestMethod]
+        public void TestMethod21()  //ToString Override, string output expected for string list.
+        {
+            //Arrange
+            CustomList<string> customList = new CustomList<string>();
+            //Act
+            customList.Add("five");
+            customList.Add("nine");
+            customList.Add("one");
+            customList.Add("eight");
+            customList.Add("zero");
+            customList.Add("two");
+            string customString = customList.ToString();
+
+            //Assert
+            Assert.AreEqual("five.nine.one.eight.zero.two", customString);
         }
 
     }

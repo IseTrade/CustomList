@@ -61,8 +61,15 @@ namespace ConsoleApp1
             Console.WriteLine($"Count is now {tempList.Count} \n");
             Console.ReadKey();  //Notice that 10 is missing from the new list and the count is now 2 less.
 
+            string stringList = customList.ToString();
 
-            
+            Console.WriteLine(stringList);
+            Console.ReadKey();
+
+            int [] arr = new int[3] { 12, 45, 60 };
+            string arrString = arr.ToString();
+            Console.WriteLine(arrString);
+            Console.ReadKey();
         }
        
     }

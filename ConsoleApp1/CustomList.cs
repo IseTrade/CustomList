@@ -12,7 +12,7 @@ namespace ConsoleApp1
         private int count;
         private int capacity;
         bool x;
-        // CustomList<T> customList;
+        
 
         public int Count
         {
@@ -242,7 +242,21 @@ namespace ConsoleApp1
             return result;
         }
 
+        public override string ToString()
+        {
+            StringBuilder output = new StringBuilder();
 
+            for (int i = 0; i < count; i++)
+            {
+                output.Append(items[i].ToString());
+
+                if (i != (count - 1))
+                {
+                    output.Append(".");
+                }
+            }
+            return output.ToString();
+        }
 
     }
 }
