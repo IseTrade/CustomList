@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Collections;
 namespace ConsoleApp1
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerable
     {
         private T[] items;
         private int count;
@@ -52,8 +52,6 @@ namespace ConsoleApp1
             }
         }
 
-
-
         public void Add(T itemToAdd)
         {
             T[] itemsAdded = new T[count + 1];
@@ -72,7 +70,7 @@ namespace ConsoleApp1
         }
 
         
-        public void xRemoveAll(T itemToRemove)  //Remove all instances of a matched value
+        public void RemoveAll(T itemToRemove)  //Remove all instances of a matched value
         {
             T[] tempList = new T[capacity];
             for (int i = 0, j = 0; i < this.count; i++, j++)
@@ -185,31 +183,10 @@ namespace ConsoleApp1
             return operatorList;
         }
 
-        public static CustomList<T> operator -(CustomList<T> list1, CustomList<T> list2)
-        {
-            CustomList<T> operatorList = new CustomList<T>();
-            bool c = true;
-            for (int i = 0; i < list1.count; i++)
-            {
-                for (int j = 0; j < list2.count; j++)
-                {
-                    if (list1[i].Equals(list2[j]))
-                    {
-                        c = false;
-                        break;
-                    }
-                }
-                if (c == true)
-                {
-                    operatorList.Add(list1[i]);
-                }
-                c = true;
-            }
-            return operatorList;
-        }
 
         public void SortAscending()  //Using bubble sort algorithm by comparing adjacent elements and swapping
                                      //them, so that largest sinks to bottom and smallest floats to top.
+                                     //really need to refactor this...
         {
             bool st = true;
             for (int i = 0; i <= (count - 1) && st; i++)
@@ -257,6 +234,68 @@ namespace ConsoleApp1
             }
             return output.ToString();
         }
+
+
+
+        //public static CustomList<T> operator -(CustomList<T> list1, CustomList<T> list2)
+        //{
+        //    CustomList<T> operatorList = new CustomList<T>();
+        //    for (int i = 0; i < list1.count; i++)
+        //    {
+        //        //if the first list contains items in the second list
+        //        operatorList.Remove(list1[i]);
+        //        //else
+        //        operatorList.Add(list1[i]);
+        //        //then
+        //        return operatorList;
+        //    }
+        //}
+
+
+
+
+
+
+        public IEnumerator GetEnumerator()
+        {
+            for (int index = 0; index < count; index++)
+            {
+                yield return items[index];
+            }
+        }
+
+        public static CustomList<T> operator -(CustomList<T> list1, CustomList<T> list2)
+        {
+            CustomList<T> operatorList = new CustomList<T>();
+            bool c = true;
+            for (int i = 0; i < list1.count; i++)
+            {
+                c = FindItemInList(list1, list2, operatorList, c, i);
+            }
+            return operatorList;
+        }
+
+        private static bool FindItemInList(CustomList<T> list1, CustomList<T> list2, CustomList<T> operatorList, bool c, int i)
+        {
+            for (int j = 0; j < list2.count; j++)
+            {
+                if (list1[i].Equals(list2[j]))
+                {
+                    c = false;
+                    break;
+                }
+            }
+            if (c == true)
+            {
+                operatorList.Add(list1[i]);
+            }
+            c = true;
+            return c;
+        }
+
+
+
+
 
     }
 }

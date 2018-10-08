@@ -7,7 +7,7 @@ namespace CustomListUnitTestProject
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod01()   //Testing to see if value passed to customList.Add is the same as value 
+        public void AddIntReturnsValueAtIndex1()   //Testing to see if value passed to customList.Add is the same as value 
                                      //stored at index 0 of customList.
         {
             //Arrange
@@ -18,27 +18,25 @@ namespace CustomListUnitTestProject
             customList.Add(value);
 
             //Assert
-
             Assert.AreEqual(value, customList[0]);
         }
 
         [TestMethod]
-        public void TestMethod02()  //Testing to see if an actual integer is passed and stored correctly. 
+        public void AddIntReturnsValueAtIndex2()  //Testing to see if an actual integer is passed and stored correctly. 
         {
             //Arrange
-            CustomList<int> customList = new CustomList<int>();
-            //int value = 16;
+            CustomList<int> customList = new CustomList<int>();           
 
             //Act
             customList.Add(16);
-
+            customList.Add(5);
             //Assert
 
-            Assert.AreEqual(16, customList[0]);
+            Assert.AreEqual(5, customList[1]);
         }
 
         [TestMethod]
-        public void TestMethod03()  //Test passing a negative int.
+        public void AddNegativeIntReturnsValueAtIndex()  //Test passing a negative int.
         {
             //Arrange
             CustomList<int> customList = new CustomList<int>();
@@ -52,7 +50,7 @@ namespace CustomListUnitTestProject
         }
 
         [TestMethod]
-        public void TestMethod04()  //Test passing a string
+        public void AddStringVerifyValueAtIndex()  //Test passing a string
         {
             //Arrange
             CustomList<string> customList = new CustomList<string>();
@@ -67,23 +65,36 @@ namespace CustomListUnitTestProject
         }
 
         [TestMethod]
-        public void TestMethod05()  //Test passing null
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void AddStringReturnsIndexOfOutRangeException()  //Testing out of index range exception
         {
             //Arrange
             CustomList<string> customList = new CustomList<string>();
-            string value = "";
+            string value = "Cookie";
 
             //Act
             customList.Add(value);
-
-            //Assert
-
-            Assert.AreEqual(value, customList[0]);
+            string temp = customList[6];
         }
 
+        [TestMethod]
+        public void IndexIntReturnsValue1()    //Testing to see if index works on [1]
+        {
+            //Arrange
+            CustomList<int> customList = new CustomList<int>();          
+            int value = 16;
+            int value1 = 20;
+
+            //Act
+            customList.Add(value);
+            customList.Add(value1);
+
+            //Assert
+            Assert.AreEqual(20, customList[1]);
+        }
 
         [TestMethod]
-        public void TestMethod06()    //Testing to see if index works on [1]
+        public void IndexIntReturnsValue2()    //Checking for value at index 0
         {
             //Arrange
             CustomList<int> customList = new CustomList<int>();
@@ -95,12 +106,58 @@ namespace CustomListUnitTestProject
             customList.Add(value1);
 
             //Assert
-            Assert.AreEqual(value1, customList[1]);
+            Assert.AreEqual(16, customList[0]);
         }
 
+        [TestMethod]
+        public void IndexStringReturnsValue1()    //Checking for value at index 0 as a string
+        {
+            //Arrange
+            CustomList<string> customList = new CustomList<string>();
+            string value = "Hello";
+            string value1 = "World";
+
+            //Act
+            customList.Add(value);
+            customList.Add(value1);
+
+            //Assert
+            Assert.AreEqual("Hello", customList[0]);
+        }
 
         [TestMethod]
-        public void TestMethod07()    //Count test before doubling Array [4]
+        public void IndexStringReturnsValue2()    //Checking for value at index 1 as a string
+        {
+            //Arrange
+            CustomList<string> customList = new CustomList<string>();
+            string value = "Hello";
+            string value1 = "World";
+
+            //Act
+            customList.Add(value);
+            customList.Add(value1);
+
+            //Assert
+            Assert.AreEqual("World", customList[1]);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void IndexStringReturnsOutOfIndexRangeException()  //Checking for out of range index
+        {
+            //Arrange
+            CustomList<string> customList = new CustomList<string>();
+            string value = "Hello";
+            string value1 = "World";
+
+            //Act
+            customList.Add(value);
+            customList.Add(value1);
+            string temp = customList[2];
+        }
+
+        [TestMethod]
+        public void AddIntReturnsCount()    //Count test before doubling Array [4]
         {
             //Arrange
             CustomList<int> customList = new CustomList<int>();
@@ -116,10 +173,10 @@ namespace CustomListUnitTestProject
         }
 
         [TestMethod]
-        public void TestMethod08()    //Testing to see if index works on [1]
+        public void AddIntReturnsCountAfterDoublingArraySize()    //Count test at 1st doubling Array[8]
         {
             //Arrange
-            CustomList<int> customList = new CustomList<int>(); //Count test at 1st doubling Array[8]
+            CustomList<int> customList = new CustomList<int>(); 
 
             //Act
             customList.Add(0);
@@ -135,10 +192,10 @@ namespace CustomListUnitTestProject
         }
 
         [TestMethod]
-        public void TestMethod09()    //Testing to see if index works on [1]
+        public void AddIntReturnsCountAfter2ndDoublingArraySize()    //Count test at 2nd doubling Array[16]
         {
             //Arrange
-            CustomList<int> customList = new CustomList<int>();   //Count test at 2nd doubling Array[16]
+            CustomList<int> customList = new CustomList<int>();   
 
             //Act
             customList.Add(0);
@@ -159,7 +216,7 @@ namespace CustomListUnitTestProject
         }
 
         [TestMethod]
-        public void TestMethod10()    // Count test at 3rd doubling or array[32]
+        public void AddIntReturnsCountAfter3rdDoublingArraySize()    // Count test at 3rd doubling or array[32]
         {
             //Arrange
             CustomList<int> customList = new CustomList<int>();
@@ -191,7 +248,7 @@ namespace CustomListUnitTestProject
         }
 
         [TestMethod]
-        public void TestMethod11()
+        public void RemoveOneElementReturnsDecreasedCountSize() //Removing one element would decrease total count by 1.
         {
             //Arrange
             CustomList<int> customList = new CustomList<int>();
@@ -210,7 +267,46 @@ namespace CustomListUnitTestProject
         }
 
         [TestMethod]
-        public void TestMethod12()
+        public void RemoveOnlyFirstMatchedElementReturnsCorrectValueForIndex() //Removing only the first 4 in the list. 
+        {
+            //Arrange
+            CustomList<int> customList = new CustomList<int>();
+
+            //Act
+            customList.Add(0);
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            customList.Add(4);
+            customList.Add(4);
+            customList.Add(6);
+            customList.Remove(4);
+
+            //Assert
+            Assert.AreEqual(6, customList[5]);
+        }
+
+        [TestMethod]
+        public void TestMethodRemove03() //Making sure both 4's are not removed. 
+        { 
+            //Arrange
+            CustomList<int> customList = new CustomList<int>();
+
+            //Act
+            customList.Add(0);
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            customList.Add(4);
+            customList.Add(4);
+            customList.Add(6);
+            customList.Remove(4);
+            //Assert
+            Assert.AreEqual(4, customList[4]);
+        }
+
+        [TestMethod]
+        public void TestMethodRemove04() //Checking other elements in the list 
         {
             //Arrange
             CustomList<int> customList = new CustomList<int>();
@@ -225,7 +321,26 @@ namespace CustomListUnitTestProject
             customList.Add(6);
             customList.Remove(4);
             //Assert
-            Assert.AreEqual(6, customList[5]);
+            Assert.AreEqual(0, customList[0]);
+        }
+
+        [TestMethod]
+        public void TestMethodRemove05() //Checking other elements in the list 
+        {
+            //Arrange
+            CustomList<int> customList = new CustomList<int>();
+
+            //Act
+            customList.Add(0);
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            customList.Add(4);
+            customList.Add(4);
+            customList.Add(6);
+            customList.Remove(4);
+            //Assert
+            Assert.AreEqual(3, customList[3]);
         }
 
         [TestMethod]
@@ -402,6 +517,114 @@ namespace CustomListUnitTestProject
             
             //Assert
             Assert.AreEqual("five.nine.one.eight.zero.two", customString);
+        }
+
+        [TestMethod]
+        public void ForEachIntReturnSum() //Foreach loop adds int elements from indices 0 to count-1
+        {
+            //Arrange
+            CustomList<int> customList = new CustomList<int>();
+            int sum = 0;
+
+            //Act
+            customList.Add(0);
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            customList.Add(4);
+            foreach (int number in customList)
+            {
+                sum += number;
+            }
+            //Assert
+            Assert.AreEqual(10, sum);
+        }
+
+        [TestMethod]
+        public void ForEachIntReturnSum2() //Foreach loop adds int elements from indices 0 to count-1
+        {
+            //Arrange
+            CustomList<int> customList = new CustomList<int>();
+            int sum = 0;
+
+            //Act
+            customList.Add(0);
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            customList.Add(4);
+            customList.Add(5);
+            foreach (int number in customList)
+            {
+                sum += number;
+            }
+            //Assert
+            Assert.AreEqual(15, sum);
+        }
+
+        [TestMethod]
+        public void ForEachIntReturnSum3() //Foreach loop adds int elements from indices 0 to count-1
+        {
+            //Arrange
+            CustomList<int> customList = new CustomList<int>();
+            int sum = 0;
+
+            //Act
+            customList.Add(0);
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            customList.Add(4);
+            customList.Add(5);
+            customList.Add(2);
+            foreach (int number in customList)
+            {
+                sum += number;
+            }
+            //Assert
+            Assert.AreEqual(17, sum);
+        }
+
+        [TestMethod]
+        public void ForEachIntReturnSum4() //Foreach loop adds int elements from indices 0 to count-1
+        {
+            //Arrange
+            CustomList<int> customList = new CustomList<int>();
+            int sum = 0;
+
+            //Act
+            customList.Add(5);
+            customList.Add(1);
+            customList.Add(6);
+            customList.Add(4);
+            customList.Add(2);
+            foreach (int number in customList)
+            {
+                sum += number;
+            }
+            //Assert
+            Assert.AreEqual(18, sum);
+        }
+
+        [TestMethod]
+        public void ForEachIntReturnSum5() //Foreach loop adds int elements from indices 0 to count-1
+        {
+            //Arrange
+            CustomList<int> customList = new CustomList<int>();
+            int sum = 0;
+
+            //Act
+            customList.Add(5);
+            customList.Add(100);
+            customList.Add(6);
+            customList.Add(4);
+            customList.Add(2);
+            foreach (int number in customList)
+            {
+                sum += number;
+            }
+            //Assert
+            Assert.AreEqual(117, sum);
         }
 
     }
