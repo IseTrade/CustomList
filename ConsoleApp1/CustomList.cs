@@ -71,8 +71,8 @@ namespace ConsoleApp1
             count += 1;
         }
 
-        // Working on Remove method, would like to use Add method created above, not sure how to do that.
-        public void xRemoveAll(T itemToRemove)
+        
+        public void xRemoveAll(T itemToRemove)  //Remove all instances of a matched value
         {
             T[] tempList = new T[capacity];
             for (int i = 0, j = 0; i < this.count; i++, j++)
@@ -91,16 +91,16 @@ namespace ConsoleApp1
             items = tempList;
         }
 
-        public CustomList<T> Zip(CustomList<T> a)
+        public CustomList<T> Zip(CustomList<T> list2)
         {
-            int s = (count <= a.count) ? count : a.count;
-            CustomList<T> z = new CustomList<T>();
+            int s = (count <= list2.count) ? count : list2.count;
+            CustomList<T> zipList = new CustomList<T>();
             for (int i = 0; i < s; i++)
             {
-                z.Add(items[i]);
-                z.Add(a[i]);
+                zipList.Add(items[i]);
+                zipList.Add(list2[i]);
             }
-            return z;
+            return zipList;
         }
 
         public bool Remove(T item)
@@ -171,29 +171,29 @@ namespace ConsoleApp1
             }
         }
 
-        public static CustomList<T> operator +(CustomList<T> a, CustomList<T> b)
+        public static CustomList<T> operator +(CustomList<T> list1, CustomList<T> list2)
         {
             CustomList<T> operatorList = new CustomList<T>();
-            for (int i = 0; i < a.count; i++)
+            for (int i = 0; i < list1.count; i++)
             {
-                operatorList.Add(a[i]);
+                operatorList.Add(list1[i]);
             }
-            for (int i = 0; i < b.count; i++)
+            for (int i = 0; i < list2.count; i++)
             {
-                operatorList.Add(b[i]);
+                operatorList.Add(list2[i]);
             }
             return operatorList;
         }
 
-        public static CustomList<T> operator -(CustomList<T> a, CustomList<T> b)
+        public static CustomList<T> operator -(CustomList<T> list1, CustomList<T> list2)
         {
             CustomList<T> operatorList = new CustomList<T>();
             bool c = true;
-            for (int i = 0; i < a.count; i++)
+            for (int i = 0; i < list1.count; i++)
             {
-                for (int j = 0; j < b.count; j++)
+                for (int j = 0; j < list2.count; j++)
                 {
-                    if (a[i].Equals(b[j]))
+                    if (list1[i].Equals(list2[j]))
                     {
                         c = false;
                         break;
@@ -201,7 +201,7 @@ namespace ConsoleApp1
                 }
                 if (c == true)
                 {
-                    operatorList.Add(a[i]);
+                    operatorList.Add(list1[i]);
                 }
                 c = true;
             }

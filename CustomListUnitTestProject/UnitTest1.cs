@@ -244,14 +244,14 @@ namespace CustomListUnitTestProject
             customList2.Add(3);
             customList2.Add(5);
             customList2.Add(7);
-            CustomList<int> zippedList = customList.Zip(customList2);
+            CustomList<int> zipList = customList.Zip(customList2);
 
             //Assert
-            Assert.AreEqual(7, zippedList[7]);
+            Assert.AreEqual(7, zipList[7]);
         }
 
         [TestMethod]
-        public void TestMethod14()
+        public void TestMethod14()  //Overloading + Operator
         {
             //Arrange
             //CustomList<int> customList = new CustomList<int>();
@@ -273,7 +273,7 @@ namespace CustomListUnitTestProject
         }
 
         [TestMethod]
-        public void TestMethod15()
+        public void TestMethod15()  //Overloading - Operator
         {
             //Arrange
             //CustomList<int> customList = new CustomList<int>();
@@ -294,7 +294,7 @@ namespace CustomListUnitTestProject
         }
 
         [TestMethod]
-        public void TestMethod16()
+        public void TestMethod16()  //Overloading - Operator
         {
             //Arrange
             //CustomList<int> customList = new CustomList<int>();
@@ -399,7 +399,7 @@ namespace CustomListUnitTestProject
             customList.Add("zero");
             customList.Add("two");
             string customString = customList.ToString();
-
+            
             //Assert
             Assert.AreEqual("five.nine.one.eight.zero.two", customString);
         }
