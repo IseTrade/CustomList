@@ -13,7 +13,6 @@ namespace ConsoleApp1
         private int capacity;
         bool x;
         
-
         public int Count
         {
             get { return count; }
@@ -29,8 +28,7 @@ namespace ConsoleApp1
         {
             count = 0;
             capacity = 4;
-            items = new T[capacity];
-            
+            items = new T[capacity];           
         }
 
         public T this[int index]
@@ -67,8 +65,7 @@ namespace ConsoleApp1
             items = itemsAdded;
             items[count] = itemToAdd;
             count += 1;
-        }
-
+        }    
         
         public void RemoveAll(T itemToRemove)  //Remove all instances of a matched value
         {
@@ -168,6 +165,7 @@ namespace ConsoleApp1
                 return false;
             }
         }
+
         public static CustomList<T> operator +(CustomList<T> list1, CustomList<T> list2)
         {
             CustomList<T> operatorList = new CustomList<T>();
@@ -182,10 +180,9 @@ namespace ConsoleApp1
             return operatorList;
         }
 
-
-        public void SortAscending()  //Using bubble sort algorithm by comparing adjacent elements and swapping
-                                     //them, so that largest sinks to bottom and smallest floats to top.
-                                     //really need to refactor this...
+        public void SortAscending()  
+        //Using bubble sort algorithm by comparing adjacent elements and swapping                                     
+        //them, so that largest sinks to bottom and smallest floats to top.                                    
         {
             bool st = true;
             for (int i = 0; i <= (count - 1) && st; i++)

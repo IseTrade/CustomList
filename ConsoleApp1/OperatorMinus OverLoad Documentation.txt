@@ -1,0 +1,68 @@
+
+
+
+
+		- Operator Overload
+
+Subtracting one CustomList<T> from another.
+
+public static CustomList<T> operator -(CustomList<T> list1, CustomList<T> list2)
+
+Parameters:  CustomList<T> list1, CustomList<T> list2
+Returns: CustomList<T>
+Syntax:  CustomList<T> overLoadMinus = CustomList<T> list1 - CustomList<T> list2;
+Example:
+
+
+           public static CustomList<T> operator -(CustomList<T> list1, CustomList<T> list2)
+        {
+            CustomList<T> operatorList = new CustomList<T>();
+            bool c = true;
+            for (int i = 0; i < list1.count; i++)
+
+            {
+                c = FindItem(list1, list2, operatorList, c, i);
+            }
+            return operatorList;
+        }
+
+        private static bool FindItem(CustomList<T> list1, CustomList<T> list2, CustomList<T> operatorList, bool c, int i)
+        {
+            for (int j = 0; j < list2.count; j++)
+            {
+                //all elements from list2 are compared with an element from list1
+                if (list1[i].Equals(list2[j]))
+                {
+                    c = false;
+                    break;
+                }
+            }
+            if (c == true)
+            {
+                operatorList.Add(list1[i]);
+            }
+            c = true;
+            return c;
+        }       
+
+
+	For this example, let's populate list1 and list2:
+	    list1.Add(1);
+            list1.Add(2);
+            list1.Add(3);
+            list2.Add(4);
+            list2.Add(1);
+            list2.Add(6); 
+	so now list1 has {1, 2, 3}   ---> using outter i loop 0 to (list1.count -1)
+	and    list2 has {4, 1, 6}   ---> using inner j loop from 0 to (list2.count - 1)
+
+	This setup uses two loops, outer loop for list1 using i, and inner loop for list2
+        using j. The process starts with list1[0] which is then compared for equality with list2[0], 
+	list2[1], and list2[2]. list1[0] equals list2[1], thus list1[0] is "subtracted" and now i increments to 1.
+	list1[1] now is compared for equality to list2[0], list2[1] and list2[2]. No equalty is found, and thus
+	list1[1] (value 2) is added to operatorList. Now i increments to 2, and there is no match with the 3
+	values in list2, thus list1[2] (value 3) is now added to operatorList. Both loops end and operatorList now
+	has two values 2 and 3. 
+
+
+
