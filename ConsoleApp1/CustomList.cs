@@ -168,7 +168,6 @@ namespace ConsoleApp1
                 return false;
             }
         }
-
         public static CustomList<T> operator +(CustomList<T> list1, CustomList<T> list2)
         {
             CustomList<T> operatorList = new CustomList<T>();
@@ -229,34 +228,13 @@ namespace ConsoleApp1
 
                 if (i != (count - 1))
                 {
-                    output.Append(".");
+                    output.Append(",");
                 }
             }
             return output.ToString();
         }
 
-
-
-        //public static CustomList<T> operator -(CustomList<T> list1, CustomList<T> list2)
-        //{
-        //    CustomList<T> operatorList = new CustomList<T>();
-        //    for (int i = 0; i < list1.count; i++)
-        //    {
-        //        //if the first list contains items in the second list
-        //        operatorList.Remove(list1[i]);
-        //        //else
-        //        operatorList.Add(list1[i]);
-        //        //then
-        //        return operatorList;
-        //    }
-        //}
-
-
-
-
-
-
-        public IEnumerator GetEnumerator()
+        public IEnumerator GetEnumerator()   //This allows foreach function to work with customList.
         {
             for (int index = 0; index < count; index++)
             {
@@ -269,16 +247,20 @@ namespace ConsoleApp1
             CustomList<T> operatorList = new CustomList<T>();
             bool c = true;
             for (int i = 0; i < list1.count; i++)
+                //This setups up two loops, outer loop for list1 using i, and inner loop for list2
+                //using j. Each list1[i] is compared with all values from list2[0] to
+                //list2[list2.count-1]. If no match is found, list[i] is added to operatorList.
             {
-                c = FindItemInList(list1, list2, operatorList, c, i);
+                c = FindItem(list1, list2, operatorList, c, i);
             }
             return operatorList;
         }
 
-        private static bool FindItemInList(CustomList<T> list1, CustomList<T> list2, CustomList<T> operatorList, bool c, int i)
+        private static bool FindItem(CustomList<T> list1, CustomList<T> list2, CustomList<T> operatorList, bool c, int i)
         {
             for (int j = 0; j < list2.count; j++)
             {
+                //all elements from list2 are compared with an element from list1
                 if (list1[i].Equals(list2[j]))
                 {
                     c = false;
@@ -292,10 +274,5 @@ namespace ConsoleApp1
             c = true;
             return c;
         }
-
-
-
-
-
     }
 }

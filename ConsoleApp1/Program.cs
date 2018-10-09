@@ -65,23 +65,23 @@ namespace ConsoleApp1
             //Console.WriteLine($"Count is now {tempList.Count} \n");
             //Console.ReadKey();  //Notice that 10 is missing from the new list and the count is now 2 less.
 
-            //string stringList = customList.ToString();
+            string stringList = customList.ToString();
 
-            //Console.WriteLine(stringList);
-            //Console.ReadKey();
+            Console.WriteLine(stringList);
+            Console.ReadKey();
             //int [] arr = new int[3] { 12, 45, 60 };
             //string arrString = arr.ToString();
             //Console.WriteLine(arrString);
             //Console.ReadKey();
 
-            int num = 0;
-            foreach (int number in customList)
-            {
-                //Console.WriteLine("Foreach output {0}", number + 2);
-                //tempList +=number
-                num += number;
-            }
-            Console.WriteLine("num is {0}", num);
+            //int num = 0;
+            //foreach (int number in customList)
+            //{
+            //    //Console.WriteLine("Foreach output {0}", number + 2);
+            //    //tempList +=number
+            //    num += number;
+            //}
+            //Console.WriteLine("num is {0}", num);
             Console.ReadKey();
         }
     }

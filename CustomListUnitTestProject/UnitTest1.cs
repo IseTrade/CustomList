@@ -287,7 +287,7 @@ namespace CustomListUnitTestProject
         }
 
         [TestMethod]
-        public void TestMethodRemove03() //Making sure both 4's are not removed. 
+        public void RemoveOnlyTheFirstMatch() //Making sure both 4's are not removed. 
         { 
             //Arrange
             CustomList<int> customList = new CustomList<int>();
@@ -306,7 +306,7 @@ namespace CustomListUnitTestProject
         }
 
         [TestMethod]
-        public void TestMethodRemove04() //Checking other elements in the list 
+        public void RemoveOneElementReturnsFirstElement() //Checking other elements in the list 
         {
             //Arrange
             CustomList<int> customList = new CustomList<int>();
@@ -325,7 +325,7 @@ namespace CustomListUnitTestProject
         }
 
         [TestMethod]
-        public void TestMethodRemove05() //Checking other elements in the list 
+        public void RemoveOneElementReturns4thElement() //Checking other elements in the list 
         {
             //Arrange
             CustomList<int> customList = new CustomList<int>();
@@ -344,7 +344,27 @@ namespace CustomListUnitTestProject
         }
 
         [TestMethod]
-        public void TestMethod13()
+        public void RemoveTwoElementsReturns4thElement() //Removing 2 elements and check if 4th is correct. 
+        {
+            //Arrange
+            CustomList<int> customList = new CustomList<int>();
+
+            //Act
+            customList.Add(0);
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
+            customList.Add(4);
+            customList.Add(4);
+            customList.Add(6);
+            customList.Remove(4);
+            customList.Remove(0);
+            //Assert
+            Assert.AreEqual(6, customList[4]);
+        }
+
+        [TestMethod]
+        public void ZipTwoListsReturnsCountOfNewList()   //Zipping two lists of equal size together. 
         {
             //Arrange
             CustomList<int> customList = new CustomList<int>();
@@ -364,6 +384,101 @@ namespace CustomListUnitTestProject
             //Assert
             Assert.AreEqual(7, zipList[7]);
         }
+
+        [TestMethod]
+        public void ZipTwoListsReturns3rdElementOfNewList()   //Zipping two lists of equal size together. 
+        {
+            //Arrange
+            CustomList<int> customList = new CustomList<int>();
+            CustomList<int> customList2 = new CustomList<int>();
+
+            //Act
+            customList.Add(0);
+            customList.Add(2);
+            customList.Add(4);
+            customList.Add(6);
+            customList2.Add(1);
+            customList2.Add(3);
+            customList2.Add(5);
+            customList2.Add(7);
+            CustomList<int> zipList = customList.Zip(customList2);
+
+            //Assert
+            Assert.AreEqual(2, zipList[2]);
+        }
+
+        [TestMethod]
+        public void ZipTwoListsReturns2ndElementOfNewList()   //Zipping two lists of equal size together. 
+        {
+            //Arrange
+            CustomList<int> customList = new CustomList<int>();
+            CustomList<int> customList2 = new CustomList<int>();
+
+            //Act
+            customList.Add(0);
+            customList.Add(2);
+            customList.Add(4);
+            customList.Add(6);
+            customList2.Add(1);
+            customList2.Add(3);
+            customList2.Add(5);
+            customList2.Add(7);
+            CustomList<int> zipList = customList.Zip(customList2);
+
+            //Assert
+            Assert.AreEqual(1, zipList[1]);
+        }
+
+        [TestMethod]
+        public void ZipTwoListsReturns6thElementOfNewList()   //Zipping two lists of equal size together. 
+        {
+            //Arrange
+            CustomList<int> customList = new CustomList<int>();
+            CustomList<int> customList2 = new CustomList<int>();
+
+            //Act
+            customList.Add(0);
+            customList.Add(2);
+            customList.Add(4);
+            customList.Add(6);
+            customList2.Add(1);
+            customList2.Add(3);
+            customList2.Add(5);
+            customList2.Add(7);
+            CustomList<int> zipList = customList.Zip(customList2);
+
+            //Assert
+            Assert.AreEqual(5, zipList[5]);
+        }
+
+        [TestMethod]
+        public void ZipAddingDifferentSizedListsReturnsNewListCount()   //Zipping two lists of different size together. Not Working...
+        {
+            //Arrange
+            CustomList<int> customList = new CustomList<int>();
+            CustomList<int> customList2 = new CustomList<int>();
+
+            //Act
+            customList.Add(0);
+            customList.Add(2);
+            customList.Add(4);
+            customList.Add(6);
+            customList2.Add(1);
+            customList2.Add(3);
+            customList2.Add(5);
+            customList2.Add(7);
+            customList2.Add(9);
+            CustomList<int> zipList = customList.Zip(customList2);
+
+            //Assert
+            Assert.AreEqual(7, zipList[7]);
+        }
+
+
+
+
+
+
 
         [TestMethod]
         public void TestMethod14()  //Overloading + Operator
