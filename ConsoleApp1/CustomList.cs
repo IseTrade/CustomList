@@ -228,7 +228,7 @@ namespace ConsoleApp1
 
                 if (i != (count - 1))
                 {
-                    output.Append(",");
+                    output.Append(".");
                 }
             }
             return output.ToString();
